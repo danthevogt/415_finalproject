@@ -18,6 +18,7 @@ namespace _415_FInalProject
 
         protected void lbPredict_Click(object sender, EventArgs e)
         {
+            
             var client = new RestClient("https://ussouthcentral.services.azureml.net/workspaces/2abd23f891284eb98f5356e46b5cb743/services/25cae0be6e7a42f383bc8c9d22845432/execute?api-version=2.0&details=true");
             client.Timeout = -1;
             var request = new RestRequest(Method.POST);
@@ -34,7 +35,7 @@ namespace _415_FInalProject
             //Get response to front page
             lblResults.Text = prediction;
 
-            Console.WriteLine(response.Content);
+            Console.WriteLine();
         }
     }
 }
