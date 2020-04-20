@@ -3,16 +3,26 @@
 }
 
 body {
+    /*background-image: url("/images/spotify-premium.jpg");*/
     background-color: #1AB26B;
     height: 100%;
     background-position: center;
     background-size: cover;
 }
 
+#hit {
+    transition: 2s !important;
+    transform: scale(0);
+}
+
+#flop {
+    transition: 2s !important;
+    transform: scale(0);
+}
+
 .section {
     background-color: #fff;
     border-radius: 25px;
-    box-decoration-break shadow;
     box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19);
     margin: 30px auto;
     max-width:850px;
@@ -194,6 +204,11 @@ TextBox {
     color: #1AB26B;
     font-weight: bold;
 }
+
+.recommender-pill {
+    display:none;
+}
+
 
 
 

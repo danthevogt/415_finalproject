@@ -18,14 +18,14 @@ namespace _415_FInalProject
 
         protected void lbPredict_Click(object sender, EventArgs e)
         {
-            
-            var client = new RestClient("https://ussouthcentral.services.azureml.net/workspaces/2abd23f891284eb98f5356e46b5cb743/services/25cae0be6e7a42f383bc8c9d22845432/execute?api-version=2.0&details=true");
+
+            var client = new RestClient("https://ussouthcentral.services.azureml.net/workspaces/4529c119463c4a0cbf18f000c68a5f3e/services/92057ab33d9c41d2adc7d98dc5981c69/execute?api-version=2.0&details=true");
             client.Timeout = -1;
             var request = new RestRequest(Method.POST);
+            request.AddHeader("Authorization", "Bearer +ohSx7Ixj/i4x+Hpxzs3x+SI4XP5z+yzPaCNFHgTNT8KlzyUeKdlWaDq23MmZ20vP5hoicELi0M37Kml/4CwFw==");
             request.AddHeader("Content-Type", "application/json");
-            request.AddHeader("Authorization", "Bearer 4DLSz1Ulm2VrIAxzfZ58KhloOLnbfCe50va1g+ya4AXdfk3/BeZ154EenhykPeWHUo47r/icSR06rYf8zh5ppg==");
             request.AddHeader("Content-Type", "application/json");
-            request.AddParameter("application/json,text/plain", "{\r\n  \"Inputs\": {\r\n    \"input1\": {\r\n      \"ColumnNames\": [\r\n        \"Marital Status\",\r\n        \"Gender\",\r\n        \"Income\",\r\n        \"Children\",\r\n        \"Cars\",\r\n        \"Age\",\r\n        \"Education\",\r\n        \"Occupation\",\r\n        \"Home Owner\",\r\n        \"Commute Distance\",\r\n        \"Region\",\r\n        \"Purchased Bike\"\r\n      ],\r\n      \"Values\": [\r\n        [\r\n          \"" + rblMaritalStatus.SelectedItem.Text + "\",\r\n          \"" + rblGender.SelectedItem.Text + "\",\r\n          \"" + txtIncome.Text + "\",\r\n          \"" + ddlChildren.SelectedValue + "\",\r\n          \"" + txtCars.Text + "\",\r\n          \"" + txtAge.Text + "\",\r\n          \"college\",\r\n          \"farmer\",\r\n          \"yes\",\r\n          \"33\",\r\n          \"alberta\",\r\n          \"yes\"\r\n        ],\r\n      ]\r\n    }\r\n  },\r\n  \"GlobalParameters\": {}\r\n}", ParameterType.RequestBody);
+            request.AddParameter("application/json,text/plain", "{\r\n  \"Inputs\": {\r\n    \"input1\": {\r\n      \"ColumnNames\": [\r\n        \"track\",\r\n        \"artist\",\r\n        \"danceability\",\r\n        \"energy\",\r\n        \"loudness\",\r\n        \"acousticness\",\r\n        \"instrumentalness\",\r\n        \"target\"\r\n      ],\r\n      \"Values\": [\r\n        [\r\n          \"" + txtTrack.Text + "\",\r\n          \"" + txtArtist.Text + "\",\r\n          \"" + txtDance.Text + "\",\r\n          \"" + txtEnergy.Text + "\",\r\n          \"" + txtLoud.Text + "\",\r\n          \"" + txtAcoustic.Text + "\",\r\n          \"" + txtInstrument.Text + "\",\r\n          \"0\"\r\n        ],\r\n      ]\r\n    }\r\n  },\r\n  \"GlobalParameters\": {}\r\n}", ParameterType.RequestBody);
             IRestResponse response = client.Execute(request);
 
             var results = JObject.Parse(response.Content);

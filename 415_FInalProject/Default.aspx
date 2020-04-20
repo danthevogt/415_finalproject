@@ -11,13 +11,12 @@
         <script src="Scripts/bootstrap.min.js"></script>
         <script src="Scripts/popper.min.js"></script>
     </head>
-    <body onload="onload()">
+    <body>
 
         <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
-            <a class="navbar-brand" href="#"><img width="120px" src="Content/img/logo.png" /> <span class="predictor"> Predictor</span></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
+            <a class="navbar-brand" href="/Default.aspx"><asp:Image width="120px" ID="Image1" ImageUrl="~/images/logo.png" runat="server" /> <span class="predictor"> Predictor</span></a>
+            <a class="navbar-brand btn btn-primary" style="position: absolute; right:10px; outline:none" href="/input.aspx">Add Data</a>
+
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
@@ -42,87 +41,73 @@
 
                              <script>
                                  function slide() {
-                                     var slider1 = document.getElementById('instrumental').value;
-                                     document.getElementById('txtIncome').value = slider1;
-                                     console.log(slider1);
+                                     var slider1 = document.getElementById('dance').value;
+                                     slider1 = (slider1 / 100);
+                                     document.getElementById('txtDance').value = slider1;
+
+                                     var slider2 = document.getElementById('energy').value;
+                                     slider2 = (slider2 / 100);
+                                     document.getElementById('txtEnergy').value = slider2;
+
+                                     var slider3 = document.getElementById('loud').value;
+                                     slider3 = (slider3 - 100);
+                                     if (slider3 < -40) {
+                                         slider3 = -40
+                                     }                                     
+                                     document.getElementById('txtLoud').value = slider3;
+
+                                     var slider4 = document.getElementById('acoustic').value;
+                                     slider4 = (slider4 / 100);
+                                     document.getElementById('txtAcoustic').value = slider4;
+
+                                     var slider5 = document.getElementById('instrumental').value;
+                                     slider5 = (slider5 / 100);
+                                     document.getElementById('txtInstrument').value = slider5;
                                  }
+
 
                                  function onload() {
                                      document.getElementById('txtTrack').focus()
                                  }
                              </script>
 
-                        <table><tr>
+                        <table>
+                            <tr>
                                 <td>Track:</td>
-                                <td><asp:TextBox ID="txtTrack" class="form-control" runat="server"></asp:TextBox></td>
-                
+                                <td>
+                                    <asp:TextBox ID="txtTrack" class="form-control" runat="server"></asp:TextBox>
+                                    <%--<asp:RequiredFieldValidator ControlToValidate="txtTrack" ForeColor="Red" ID="RequiredFieldValidator1" runat="server" ErrorMessage="Type in a track name."></asp:RequiredFieldValidator>--%>
+                                </td>
+                                
                             </tr>
                             <tr>
                                 <td>Artist:</td>
-                                <td><asp:TextBox ID="txtArtist" class="form-control" runat="server"></asp:TextBox></td>
-                            </tr>
-                            <tr>
-                                <td>Danceability</td>
-                                <td><input onchange="slide()" type="range" min="0" max="100" value="50" class="slider1" id="dance" /></td>
-                            </tr>
-                            <tr>
-                                <td>Energy</td>
-                                <td><input onchange="slide()" type="range" min="0" max="100" value="50" class="slider2" id="energy" /></td>
-                            </tr>
-                            <tr>
-                                <td>Loudness</td>
-                                <td><input onchange="slide()" type="range" min="0" max="100" value="50" class="slider3" id="loud" /></td>
-                            </tr>
-                            <tr>
-                                <td>Acousticness</td>
-                                <td><input onchange="slide()" type="range" min="0" max="100" value="50" class="slider4" id="acoustic" /></td>
-                            </tr>
-                            <tr>
-                                <td>Intrumentalness</td>
-                                <td><input onchange="slide()" type="range" min="0" max="100" value="50" class="slider5" id="instrumental" /></td>
-                            </tr>
-                            <tr>
-                                <td>Marital Status:</td>
-                                <td><asp:RadioButtonList ID="rblMaritalStatus" runat="server">
-                                    <asp:ListItem>Married</asp:ListItem>
-                                    <asp:ListItem>Single</asp:ListItem>
-                                </asp:RadioButtonList></td>
-                            </tr>
-                            <tr>
-                                <td>Gender:</td>
-                                <td><asp:RadioButtonList ID="rblGender" runat="server">
-                                    <asp:ListItem>Male</asp:ListItem>
-                                    <asp:ListItem>Female</asp:ListItem>
-                                </asp:RadioButtonList></td>
-                            </tr>
-                            <tr style="display:none">
-                                <td>Income:</td>
                                 <td>
-                                    <asp:TextBox ID="txtIncome" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txtArtist" class="form-control" runat="server"></asp:TextBox>
+                                    <%--<asp:RequiredFieldValidator ControlToValidate="txtArtist" ForeColor="Red" ID="RequiredFieldValidator2" runat="server" ErrorMessage="Type in an artist name."></asp:RequiredFieldValidator>--%>
                                 </td>
                             </tr>
                             <tr>
-                                <td>Children:</td>
-                                <td>
-                                    <asp:DropDownList ID="ddlChildren" runat="server">
-                                        <asp:ListItem Value="1">1</asp:ListItem>
-                                        <asp:ListItem Value="2">2</asp:ListItem>
-                                        <asp:ListItem Value="3">3</asp:ListItem>
-                                        <asp:ListItem Value="4">4</asp:ListItem>
-                                        <asp:ListItem Value="5">5</asp:ListItem>
-                                        <asp:ListItem Value="6">6+</asp:ListItem>
-                                    </asp:DropDownList>
-                                </td>
+                                <td>Danceability<span style="color:red">*</span></td>
+                                <td><input onchange="slide()" type="range" min="0" max="100" value="0" class="slider1" id="dance" /></td>
                             </tr>
                             <tr>
-                                <td>Cars:</td>
-                                <td><asp:TextBox ID="txtCars" runat="server"></asp:TextBox></td>
-                
+                                <td>Energy<span style="color:red">*</span></td>
+                                <td><input onchange="slide()" type="range" min="0" max="100" value="0" class="slider2" id="energy" /></td>
                             </tr>
                             <tr>
-                                <td>Age:</td>
-                                <td><asp:TextBox ID="txtAge" runat="server"></asp:TextBox></td>
+                                <td>Loudness<span style="color:red">*</span></td>
+                                <td><input onchange="slide()" type="range" min="0" max="100" value="0" class="slider3" id="loud" /></td>
                             </tr>
+                            <tr>
+                                <td>Acousticness<span style="color:red">*</span></td>
+                                <td><input onchange="slide()" type="range" min="0" max="100" value="0" class="slider4" id="acoustic" /></td>
+                            </tr>
+                            <tr>
+                                <td>Intrumentalness<span style="color:red">*</span></td>
+                                <td><input onchange="slide()" type="range" min="0" max="100" value="0" class="slider5" id="instrumental" /></td>
+                            </tr>
+                            
                             <tr>
                                 <td></td>
                                 <td>
@@ -131,19 +116,91 @@
                             </tr>
 
                         </table>
+                        <div style="display:none">
+                            <asp:TextBox ID="txtDance" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtEnergy" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtLoud" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtAcoustic" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtInstrument" runat="server"></asp:TextBox>
+                        </div>
         
                     </form>
                 </div>
                 <div class="col">
+                  <asp:Label style="display:none" ID="lblResults" runat="server" Font-Size="Larger"></asp:Label>
+                    <div id="hit" align="center">
+                        <h4 class="display-3">It's a hit!</h4>
+                        <asp:Image width="80%" ID="Image2" ImageUrl="~/images/hit.png" runat="server" />
+                    </div>
+                    <div id="flop" align="center">
+                        <h4 class="display-3">It's a flop</h4>
+                    <asp:Image width="80%" ID="Image3" ImageUrl="~/images/flop.png" runat="server" />
+                    </div>
+                    <script>
 
-                  <asp:Label ID="lblResults" runat="server" Font-Size="Larger"></asp:Label>
+                       
+                        if ((document.getElementById('txtTrack').value) === "") {
+                           
+                        }
+                        else if ((document.getElementById('lblResults').innerHTML).trim() >= .5) {
+                            let hit = document.getElementById("hit");
+                            hit.style.display = "block";
+                            hit.style.transform = "scale(1)"
+                            document.getElementById("flop").style.display = "none";
+
+                        }
+                        else if ((document.getElementById('lblResults').innerHTML).trim() < .5) {
+                            let flop = document.getElementById("flop")
+                            flop.style.transform = "scale(1)"
+                            document.getElementById("hit").style.display = "none";
+                        }
+                        else {
+                            document.getElementById("hit").style.display = "none";
+                            document.getElementById("flop").style.display = "none";
+                        }
+                        
+                    </script>
+                    <div class="recommender-pill">
+                        <h3>You might want to try these songs!</h3>
+                        <div class="section">
+                            <h6>Recommend #1</h6>
+                            <h4>[blank] by [blank]</h4>
+                        </div>
+                        <div class="section">
+                            <h6>Recommend #2</h6>
+                            <h4>[blank] by [blank]</h4>
+                        </div>
+                        <div class="section">
+                            <h6>Recommend #3</h6>
+                            <h4>[blank] by [blank]</h4>
+                        </div>
+                    </div>
                 </div>
               </div>
-            </div>
-
-
-        
+            </div>        
         </div>
+        
+        <!--Notes section-->
+        <div class="section">
+            <small><span style="color:red">*</span><strong>Danceability:</strong> Describes how suitable a track is for dancing based on a combination of musical elements including tempo, rhythm stability, beat strength, and overall regularity. A value of 0.0 is least danceable and 1.0 is most danceable.</small><br /><br />
+            <small><span style="color:red">*</span><strong>Energy:</strong> Energy is a measure from 0.0 to 1.0 and represents a perceptual measure of intensity and activity. Typically, energetic tracks feel fast, loud, and noisy. For example, death metal has high energy, while a Bach prelude scores low on the scale. Perceptual features contributing to this attribute include dynamic range, perceived loudness, timbre, onset rate, and general entropy.</small><br /><br />
+            <small><span style="color:red">*</span><strong>Loudness:</strong> The overall loudness of a track in decibels (dB). Loudness values are averaged across the entire track and are useful for comparing relative loudness of tracks. Loudness is the quality of a sound that is the primary psychological correlate of physical strength (amplitude). Values typical range between -60 and 0 db.</small><br /><br />
+            <small><span style="color:red">*</span><strong>Acousticness:</strong> A confidence measure from 0.0 to 1.0 of whether the track is acoustic. 1.0 represents high confidence the track is acoustic.</small><br /><br />
+            <small><span style="color:red">*</span><strong>Instrumentalness:</strong> Predicts whether a track contains no vocals. “Ooh” and “aah” sounds are treated as instrumental in this context. Rap or spoken word tracks are clearly “vocal”. The closer the instrumentalness value is to 1.0, the greater likelihood the track contains no vocal content. Values above 0.5 are intended to represent instrumental tracks, but confidence is higher as the value approaches 1.0. The distribution of values for this feature look like this:</small>
+        </div>
+
+
+        <style type="text/css">
+            #hit {
+                transition: 2s;
+                transform: scale(0);
+            }
+
+            #flop {
+                transition: 2s;
+                transform: scale(0);
+            }
+        </style>
 
 
     
